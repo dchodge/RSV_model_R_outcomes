@@ -96,6 +96,7 @@ ind_parents <- c(0,0,0,0,0,0,0,0,0,0,0,0,0, 0,   0,   0,   0,   0,   1.0,1.0,1.0
 pal_eff <- rweibull(1250, 12.4311, 0.772251) # efficacy of palivizumab
 mat_eff <- rweibull(1250, 3.32676, 0.461343) # efficacy in neonates
 lav_eff <- rweibull(1250, 31.4637, 0.844676) # efficacy in mothers
+
 make_vac_program_info_custom_mats <- function(seed) {
   list(
       pal = list(id = TRUE, age_id = ind_pal, t_start = 15, t_end = 36, eff = pal_eff[seed], cov = 0.9),
@@ -141,6 +142,9 @@ save(output_default, file = here("data", "inter_model_output", "status_quo.RData
 
 
 ```{r}
+
+
+load( file = here("data", "inter_model_output", "status_quo.RData"))
 
 meanfiles <- output_default[[1]] %>%
   group_by(outcome, time, age_group) %>%

@@ -3,17 +3,29 @@
 #' @param pal_info A list of parameters assocaited with Palivizumab administration
 #' @return A list, first element is the when the doses are given, the second is when individuals seroconvert.
 get_pal_calendar <- function(pal_info) { 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
     calendar <- matrix(0, 365, 25)
     sero <- matrix(0, 365, 25)
 
     for (i in (pal_info$t_start):(pal_info$t_end)) {
         for (j in 1:25) {
+<<<<<<< HEAD
+        calendar[(i - 1) %% 365 + 1, j] <- pal_info$age_id[j] * pal_info$cov / 30.0
+        sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * pal_info$eff;
+        }
+    }
+    list(calendar = calendar, sero = sero)
+
+=======
            calendar[(i - 1) %% 365 + 1, j] <- pal_info$age_id[j] * pal_info$cov / 30.0
            sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * pal_info$eff;
         }
     }
     list(calendar = calendar, sero = sero)
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
 }
 
 #' Generate a daily vaccination calendar for long-acting monnoclonal ab administration for VHR infants
@@ -22,13 +34,26 @@ get_pal_calendar <- function(pal_info) {
 #' @return A list, first element is the when the doses are given, the second is when individuals seroconvert.
 get_vhr_mAB_calendar <- function(mab_vhr_info) { 
 
+<<<<<<< HEAD
+    if(is.null(mab_vhr_info$age_eff_ind)) {
+        eff_age <- rep(mab_vhr_info$eff, 25)
+    } else {
+        eff_age <- c(rep(mab_vhr_info$eff[1], 3), rep(mab_vhr_info$eff[2], 22))
+    }
+    
+=======
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
     calendar <- matrix(0, 365, 25)
     sero <- matrix(0, 365, 25)
 
     for (i in (mab_vhr_info$t_start):(mab_vhr_info$t_end)) {
         for (j in 1:25) {
            calendar[(i - 1) %% 365 + 1, j] <- mab_vhr_info$age_id[j] * mab_vhr_info$cov / 30.0
+<<<<<<< HEAD
+           sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * eff_age[j];
+=======
            sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * mab_vhr_info$eff;
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
         }
     }
     list(calendar = calendar, sero = sero)
@@ -40,6 +65,15 @@ get_vhr_mAB_calendar <- function(mab_vhr_info) {
 #' @return A list, first element is the when the doses are given, the second is when individuals seroconvert.
 get_mAB_calendar <- function(mab_info) { 
 
+<<<<<<< HEAD
+    if(is.null(mab_info$age_eff_ind)) {
+        eff_age <- rep(mab_info$eff, 25)
+    } else {
+        eff_age <- c(rep(mab_info$eff[1], 3), rep(mab_info$eff[2], 22))
+    }
+
+=======
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
     calendar <- matrix(0.0, 365, 25)
     sero <- matrix(0.0, 365, 25)
 
@@ -48,6 +82,38 @@ get_mAB_calendar <- function(mab_info) {
            calendar[(i - 1) %% 365 + 1, j] <- mab_info$age_id[j] * mab_info$cov / 30.0
         }
     }
+<<<<<<< HEAD
+    if (!is.null(mab_info$catchup)) {
+        if (mab_info$catchup) {
+            for (i in (mab_info$t_start):(mab_info$t_start + 28)) {
+                for (j in 1:25) {
+                    calendar[(i - 1) %% 365 + 1, j] <- mab_info$age_id_catchup[j] * mab_info$cov / 30.0
+                }
+            }
+        }
+    }
+    if (!is.null(mab_info$catchupnip)) {
+        if (mab_info$catchupnip) {
+            for (i in (13 * 7):(13 * 7 + 30)) {
+                for (j in 3:5) {
+                    calendar[(i - 1) %% 365 + 1, j] <- 1 * mab_info$cov / 30.0
+                }
+            }
+            for (i in (9 * 7):(9 * 7 + 30)) {
+                calendar[(i - 1) %% 365 + 1, 5] <- 1 * mab_info$cov / 30.0
+            }
+            for (i in (4 * 7):(4 * 7 + 30)) {
+                calendar[(i - 1) %% 365 + 1, 5] <- 1 * mab_info$cov / 30.0
+            }        
+            for (i in (0 * 7):(0 * 7 + 30)) {
+                calendar[(i - 1) %% 365 + 1, 5] <- 1 * mab_info$cov / 30.0
+            }
+        }
+    }
+    for (i in 0:365) {
+        for (j in 1:25) {
+           sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * eff_age[j];
+=======
     if (mab_info$catchup) {
         for (i in (mab_info$t_start):(mab_info$t_start + 28)) {
             for (j in 1:25) {
@@ -75,6 +141,7 @@ get_mAB_calendar <- function(mab_info) {
     for (i in 0:365) {
         for (j in 1:25) {
            sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * mab_info$eff;
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
         }
     }
 
@@ -345,8 +412,13 @@ run_sample_custom <- function(seeds, func_vac, vac_par_info, cov_c, post, cost_i
         vac_par_info, as.matrix(post)[seed, ])
       outcomes_cea <- get_outcomes(out, as.matrix(post)[seed, ], cost_imp, discount_rate, seed, disease_mult)
       
+<<<<<<< HEAD
+      QALY_list[[i]] <- outcomes_cea$QALY %>% unique
+      cost_list[[i]] <- outcomes_cea$cost %>% unique
+=======
       QALY_list[[i]] <- outcomes_cea$QALY
       cost_list[[i]] <- outcomes_cea$cost
+>>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
       outcomes_week_age_list[[i]] <- outcomes_cea$outcomes_age_week
 
       cat("sample_no: ", i, "\n"); i <- i + 1;
