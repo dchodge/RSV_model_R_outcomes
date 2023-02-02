@@ -158,46 +158,4 @@ create_calendars_hodgson <- function(all_eff) {
     all_info <- list(programmes = all_programmes, mat_cov = cov_c)
     save(all_info, file = here::here("data", "inter_model_input", "hodgson_programmes.RData"))
 
-    # Select correct programme
-   # output <- switch(prog_no,
-   #     create_calendar(P1_pal_programme, "week", 0),
-    #    create_calendar(P2_mab_vhr_programme, "week", 0),
-     #   create_calendar(P3_mab_hr_programme, "week", 0),
-     #   create_calendar(P4_mab_hr_plus_programme, "week", 0),
-     #   create_calendar(P5_mab_all_programme, "week", 0),
-     #   create_calendar(P6_mab_all_plus_programme, "week", 0),
-     #   create_calendar(P7_mat_season_programme, "week", 0.6),
-     #   create_calendar(P8_mat_yr_programme, "week", 0.6),
-     #   create_calendar(P9_LAV_2mo_season_programme, "week", 0),
-     #   create_calendar(P10_LAV_2mo_yr_programme, "week", 0),
-     #   create_calendar(P11_LAV_2_4_programme, "week", 0),
-     #   create_calendar(P12_LAV_5_9_programme, "week", 0),
-     #   create_calendar(P13_LAV_5_14_programme, "week", 0),
-     #   create_calendar(P14_LAV_65_programme, "week", 0),
-     #   create_calendar(P15_LAV_75_programme, "week", 0)
-    #)
-    
-
-   # names <- c("pal", "mAB_VHR", "mAB_HR", "mAB_LR", "LAV_HR", "LAV_LR", "mat_LR")
-   # out <- vector(mode = "list", length = length(output[[1]])) %>% setNames(names)
-   # j <- 1
-   # if (type == "cal") {
-   #     for (i in output[[1]]) {
-   #         if (is.matrix(i))
-   #             out[[j]] <- i
-   #         else
-   #             out[[j]] <- i[[2]]
-   #         j <- j + 1
-   #     }
-   # } else {
-   #     j <- 1
-   #     for (i in output[[1]]) {
-    #            out[[j]] <- i
-   ##         if (is.matrix(i))
-    #        else 
-    #            out[[j]] <- i[[1]]
-    #        j <- j + 1
-    #    }
-    #}
-    #list(out = out, cov_c = output[[2]])*/
 }

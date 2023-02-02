@@ -170,6 +170,18 @@ output_lucy <- list(outcomes = df_R_plot, qaly = df_R_qaly, cost_treat = df_R_co
 save(output_lucy, file = here::here("data", "other", "df_outcomes_lucy.RData"))
 
 
+load(file = here::here("data", "other", "df_outcomes_lucy.RData"))
+output_lucy$outcomes %>% pull(outcome) %>% unique
+
+output_lucy$outcomes %>% filter(seed == 887) %>% dplyr::filter(outcome == "All cases", age_group == 25)
+output_lucy$qaly %>% filter(seed == 887) 
+output_lucy$cost_treat %>% filter(seed == 887) 
+
+output_lucy$outcomes %>% filter(seed == 1)
+
+
+output_lucy$outcomes[!complete.cases(output_lucy$outcomes), ] %>% as.data.frame %>% dplyr::select(!age_group) %>% unique
+
 left_join(
   df_R_qaly %>% filter(inter == "NONE") %>% rename(value_base = value) %>% dplyr::select(!inter),
   df_R_qaly %>% filter(inter == "PAL_VHR_S")

@@ -1003,11 +1003,6 @@ public:
           double lossP, lossMS0, lossMS1;
           
           // Birth rate into each social group
-<<<<<<< HEAD
-          // Rcpp::Rcout << "Birth rate into each social group: " << a << std::endl;
-=======
-       //   Rcpp::Rcout << "Birth rate into each social group: " << a << std::endl;
->>>>>>> 88be13e98e7c6ae99bcfd23a3804b87930def318
 
           if (a == 0)
           {
