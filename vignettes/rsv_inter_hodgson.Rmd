@@ -173,6 +173,7 @@ save(output_lucy, file = here::here("data", "other", "df_outcomes_lucy.RData"))
 load(file = here::here("data", "other", "df_outcomes_lucy.RData"))
 output_lucy$outcomes %>% pull(outcome) %>% unique
 
+outputs[[2]]$outcomes_week_age %>% filter(seed == 566) 
 output_lucy$outcomes %>% filter(seed == 887) %>% dplyr::filter(outcome == "All cases", age_group == 25)
 output_lucy$qaly %>% filter(seed == 887) 
 output_lucy$cost_treat %>% filter(seed == 887) 
@@ -180,7 +181,7 @@ output_lucy$cost_treat %>% filter(seed == 887)
 output_lucy$outcomes %>% filter(seed == 1)
 
 
-output_lucy$outcomes[!complete.cases(output_lucy$outcomes), ] %>% as.data.frame %>% dplyr::select(!age_group) %>% unique
+output_lucy$outcomes[!complete.cases(output_lucy$outcomes), ] %>% as.data.frame %>% dplyr::select(!age_group) %>% unique %>% pull(seed) %>% unique
 
 left_join(
   df_R_qaly %>% filter(inter == "NONE") %>% rename(value_base = value) %>% dplyr::select(!inter),

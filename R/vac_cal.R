@@ -57,23 +57,6 @@ get_mAB_calendar <- function(mab_info) {
             }
         }
     }
-    if (mab_info$catchupnip) {
-        for (i in (13 * 7):(13 * 7 + 30)) {
-            for (j in 3:5) {
-                calendar[(i - 1) %% 365 + 1, j] <- 1 * mab_info$cov / 30.0
-            }
-        }
-        for (i in (9 * 7):(9 * 7 + 30)) {
-            calendar[(i - 1) %% 365 + 1, 5] <- 1 * mab_info$cov / 30.0
-        }
-        for (i in (4 * 7):(4 * 7 + 30)) {
-            calendar[(i - 1) %% 365 + 1, 5] <- 1 * mab_info$cov / 30.0
-        }        
-        for (i in (0 * 7):(0 * 7 + 30)) {
-            calendar[(i - 1) %% 365 + 1, 5] <- 1 * mab_info$cov / 30.0
-        }
-    }
-    
     for (i in 0:365) {
         for (j in 1:25) {
            sero[(i - 1) %% 365 + 1, j] <- calendar[(i - 1) %% 365 + 1, j] * mab_info$eff;
